@@ -21,6 +21,7 @@ namespace FindTheDoors
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            Window.Title = "Test";
         }
 
         protected override void LoadContent()
