@@ -47,6 +47,7 @@ namespace FindTheDoors
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            GraphicsDevice.Clear(Color.Red);
         }
     }
 }
