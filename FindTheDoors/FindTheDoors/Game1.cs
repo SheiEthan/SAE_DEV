@@ -19,6 +19,8 @@ namespace FindTheDoors
         private int _count;
         private KeyboardState _keyboardState;
         private bool test;
+        private int _taillePerso;
+        private int _tailleFenetre;
 
 
         public Game1()
@@ -37,6 +39,7 @@ namespace FindTheDoors
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
             _count = 0;
+            _tailleFenetre = 400;
             test = true;
 
         }
@@ -60,6 +63,22 @@ namespace FindTheDoors
             {
                 _sensPerso = 0;
                
+            }
+            if (_positionPerso.Y >= _tailleFenetre)
+            {
+                _positionPerso = new Vector2(_positionPerso.X, -_taillePerso);
+            }
+            if (_positionPerso.Y < 0)
+            {
+                _positionPerso = new Vector2(_positionPerso.X, _tailleFenetre + _taillePerso * 3);
+            }
+            if (_positionPerso.X >= _tailleFenetre)
+            {
+                _positionPerso = new Vector2(-_taillePerso, _positionPerso.Y);
+            }
+            if (_positionPerso.X < 0)
+            {
+                _positionPerso = new Vector2(_tailleFenetre + _taillePerso * 3, _positionPerso.Y);
             }
             if (_keyboardState.IsKeyDown(Keys.D)  && !(_keyboardState.IsKeyDown(Keys.Q)))
             {
@@ -115,7 +134,9 @@ namespace FindTheDoors
                     test = false;
                 }
             }
+            if (_keyboardState.IsKeyDown(Keys.T))
 
+            { test = true; }
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
