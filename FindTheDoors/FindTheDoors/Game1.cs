@@ -56,33 +56,66 @@ namespace FindTheDoors
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _keyboardState = Keyboard.GetState();
             // si fleche droite
-            if (_keyboardState.IsKeyUp(Keys.Right) || _keyboardState.IsKeyUp(Keys.Left))
+            if (_keyboardState.IsKeyUp(Keys.D) || _keyboardState.IsKeyUp(Keys.Q) && (_keyboardState.IsKeyUp(Keys.Z) || _keyboardState.IsKeyUp(Keys.S)))
             {
                 _sensPerso = 0;
                
             }
-            _keyboardState.IsKeyDown(Keys.Right);
-            if (_keyboardState.IsKeyDown(Keys.Right)  && !(_keyboardState.IsKeyDown(Keys.Left)))
+            if (_keyboardState.IsKeyDown(Keys.D)  && !(_keyboardState.IsKeyDown(Keys.Q)))
             {
                 if (test)
                 {
                     for (int i = 0; i < 1; i++)
                     {
                         _sensPerso = 20;
+                        _texturePerso = Content.Load<Texture2D>("HeroDroit");
                         _positionPerso.X += _sensPerso;
                     }
                     test = false;
                 }
 
             }
-            if (_keyboardState.IsKeyDown(Keys.Left) && !(_keyboardState.IsKeyDown(Keys.Right)))
+            if (_keyboardState.IsKeyDown(Keys.Q) && !(_keyboardState.IsKeyDown(Keys.D)))
             {
-                _sensPerso = -20;
-                _positionPerso.X += _sensPerso;
+                if (test)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        _sensPerso = -20;
+                        _texturePerso = Content.Load<Texture2D>("HeroGauche");
+                        _positionPerso.X += _sensPerso;
+                    }
+                    test = false;
+                }
+            }
+            if (_keyboardState.IsKeyDown(Keys.S) && !(_keyboardState.IsKeyDown(Keys.Z)))
+            {
+                if (test)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        _sensPerso = 20;
+                        _texturePerso = Content.Load<Texture2D>("HeroFace");
+                        _positionPerso.Y += _sensPerso;
+                    }
+                    test = false;
+                }
 
             }
+            if (_keyboardState.IsKeyDown(Keys.Z) && !(_keyboardState.IsKeyDown(Keys.S)))
+            {
+                if (test)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        _sensPerso = -20;
+                        _texturePerso = Content.Load<Texture2D>("HeroDos");
+                        _positionPerso.Y += _sensPerso;
+                    }
+                    test = false;
+                }
+            }
 
-            
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
