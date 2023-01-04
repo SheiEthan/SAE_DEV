@@ -19,6 +19,14 @@ namespace FindTheDoors
         private int _count;
         private KeyboardState _keyboardState;
         private bool test;
+        private Texture2D _texturecoeur1;
+        private Texture2D _textureclef;
+        private Texture2D _texturecoeur2;
+        private Texture2D _texturecoeur3;
+        private Vector2 _positioncoeur1;
+        private Vector2 _positionclef;
+        private Vector2 _positioncoeur2;
+        private Vector2 _positioncoeur3;
 
 
         public Game1()
@@ -33,9 +41,10 @@ namespace FindTheDoors
             base.Initialize();
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             _graphics.PreferredBackBufferWidth = 400;
-            _graphics.PreferredBackBufferHeight = 400;
+            _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
+            _positioncoeur1 = new Vector2(20, 425);
             _count = 0;
             test = true;
 
@@ -47,6 +56,7 @@ namespace FindTheDoors
             _tiledMap = Content.Load<TiledMap>("sable");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             _texturePerso = Content.Load<Texture2D>("HeroFace");
+            _texturecoeur1 = Content.Load<Texture2D>("Hearth1");
         }
 
         protected override void Update(GameTime gameTime)
@@ -122,11 +132,21 @@ namespace FindTheDoors
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             _tiledMapRenderer.Draw();
             _spriteBatch.Begin();
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
-            _spriteBatch.End();
+            _spriteBatch.Draw(_texturecoeur1, _positioncoeur1, Color.White);
+            _spriteBatch.Draw(_texturecoeur1,                                  // Texture (Image)
+                     _positioncoeur1,                               // Position de l'image
+                     null,                                       // Zone de l'image à afficher
+                     Color.White,                                // Teinte
+                     0,         // Rotation (en rad)
+                     new Vector2(0,0),  // Origine
+                     3.0f,                                       // Echelle
+                     SpriteEffects.None,                         // Effet
+                     0);
+            _spriteBatch.End(); 
             base.Draw(gameTime);
 
             
