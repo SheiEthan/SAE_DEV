@@ -16,8 +16,9 @@ namespace FindTheDoors
         private Texture2D _texturePerso;
         private Vector2 _positionPerso;
         private int _sensPerso;
-        private int _vitessePerso;
+        private int _count;
         private KeyboardState _keyboardState;
+        private bool test;
 
 
         public Game1()
@@ -35,7 +36,9 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferHeight = 400;
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
-            _vitessePerso = 20;
+            _count = 0;
+            test = true;
+
         }
 
         protected override void LoadContent()
@@ -58,11 +61,19 @@ namespace FindTheDoors
                 _sensPerso = 0;
                
             }
-            if (_keyboardState.IsKeyDown(Keys.Right) && !(_keyboardState.IsKeyDown(Keys.Left)))
+            _keyboardState.IsKeyDown(Keys.Right);
+            if (_keyboardState.IsKeyDown(Keys.Right)  && !(_keyboardState.IsKeyDown(Keys.Left)))
             {
-                _sensPerso = 20;
-                _positionPerso.X += _sensPerso;
-                
+                if (test)
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        _sensPerso = 20;
+                        _positionPerso.X += _sensPerso;
+                    }
+                    test = false;
+                }
+
             }
             if (_keyboardState.IsKeyDown(Keys.Left) && !(_keyboardState.IsKeyDown(Keys.Right)))
             {
@@ -71,7 +82,7 @@ namespace FindTheDoors
 
             }
 
-         
+            
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
