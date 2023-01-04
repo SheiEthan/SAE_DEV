@@ -19,15 +19,12 @@ namespace FindTheDoors
         private int _count;
         private KeyboardState _keyboardState;
         private bool test;
-        private Texture2D _texturecoeur1;
-        private Texture2D _textureclef;
-        private Texture2D _texturecoeur2;
-        private Texture2D _texturecoeur3;
-        private Vector2 _positioncoeur1;
-        private Vector2 _positionclef;
-        private Vector2 _positioncoeur2;
-        private Vector2 _positioncoeur3;
-
+        private SpriteFont _police;
+        private Texture2D _texturecoeur;
+        private Texture2D _textureClef;
+        private Vector2 _positioncoeur;
+        private Vector2 _positionClef;
+        private int _nbCoeur;
 
         public Game1()
         {
@@ -44,8 +41,9 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
-            _positioncoeur1 = new Vector2(20, 425);
+            _positioncoeur = new Vector2(20, 405);
             _count = 0;
+            _nbCoeur = 3;
             test = true;
 
         }
@@ -56,7 +54,8 @@ namespace FindTheDoors
             _tiledMap = Content.Load<TiledMap>("sable");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             _texturePerso = Content.Load<Texture2D>("HeroFace");
-            _texturecoeur1 = Content.Load<Texture2D>("Hearth1");
+            _texturecoeur = Content.Load<Texture2D>("Hearth1");
+            _police = Content.Load<SpriteFont>("Font");
         }
 
         protected override void Update(GameTime gameTime)
@@ -136,16 +135,8 @@ namespace FindTheDoors
             _tiledMapRenderer.Draw();
             _spriteBatch.Begin();
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
-            _spriteBatch.Draw(_texturecoeur1, _positioncoeur1, Color.White);
-            _spriteBatch.Draw(_texturecoeur1,                                  // Texture (Image)
-                     _positioncoeur1,                               // Position de l'image
-                     null,                                       // Zone de l'image à afficher
-                     Color.White,                                // Teinte
-                     0,         // Rotation (en rad)
-                     new Vector2(0,0),  // Origine
-                     3.0f,                                       // Echelle
-                     SpriteEffects.None,                         // Effet
-                     0);
+            _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
+            _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.End(); 
             base.Draw(gameTime);
 
