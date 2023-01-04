@@ -15,7 +15,10 @@ namespace FindTheDoors
         private TiledMapRenderer _tiledMapRenderer;
         private Texture2D _texturePerso;
         private Vector2 _positionPerso;
-       
+        private int _sensPerso;
+        private int _vitessePerso;
+        private KeyboardState _keyboardState;
+
 
         public Game1()
         {
@@ -32,6 +35,7 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferHeight = 400;
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
+            _vitessePerso = 20;
         }
 
         protected override void LoadContent()
@@ -46,6 +50,28 @@ namespace FindTheDoors
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _keyboardState = Keyboard.GetState();
+            // si fleche droite
+            if (_keyboardState.IsKeyUp(Keys.Right) || _keyboardState.IsKeyUp(Keys.Left))
+            {
+                _sensPerso = 0;
+               
+            }
+            if (_keyboardState.IsKeyDown(Keys.Right) && !(_keyboardState.IsKeyDown(Keys.Left)))
+            {
+                _sensPerso = 20;
+                _positionPerso.X += _sensPerso;
+                
+            }
+            if (_keyboardState.IsKeyDown(Keys.Left) && !(_keyboardState.IsKeyDown(Keys.Right)))
+            {
+                _sensPerso = -20;
+                _positionPerso.X += _sensPerso;
+
+            }
+
+         
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
