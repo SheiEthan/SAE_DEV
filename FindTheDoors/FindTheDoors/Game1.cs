@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Graphics;
+using System;
 
 namespace FindTheDoors
 {
@@ -26,7 +27,10 @@ namespace FindTheDoors
         private int _nbCoeur;
         private int _tailleFenetre;
         private int _taillePerso;
-
+        private int _nbMechant;
+        private int _tailleMechant;
+        private Texture2D[] _textureMechant;
+        private Vector2[] _positionMechant;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -41,11 +45,19 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferWidth = 400;
             _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
+            _nbMechant = 5;
             _positionPerso = new Vector2(0,0);
             _positioncoeur = new Vector2(20, 405);
             _positionClef = new Vector2(325, 400);
             _tailleFenetre = 400;
             _taillePerso = 20;
+            _tailleMechant = 20;
+      
+              Random rnd = new Random();
+            for (int i = 0; i < _nbMechant; i++)
+            {
+                _positionMechant[i] = new Vector2(rnd.Next(0,_tailleFenetre- _tailleMechant), (rnd.Next(0, _tailleFenetre - _tailleMechant)));
+            }
             _nbCoeur = 3;
             test = true;
 
@@ -59,6 +71,10 @@ namespace FindTheDoors
             _texturePerso = Content.Load<Texture2D>("HeroFace");
             _texturecoeur = Content.Load<Texture2D>("Hearth1");
             _textureClef = Content.Load<Texture2D>("Key2");
+            for (int i = 0; i < _nbMechant; i++)
+            {
+                _textureMechant[i] = Content.Load<Texture2D>("Slime");
+            }
             _police = Content.Load<SpriteFont>("Font");
         }
       
@@ -80,7 +96,7 @@ namespace FindTheDoors
             }
             if (_positionPerso.X < 0)
             {
-                _positionPerso = new Vector2(_tailleFenetre-20, _positionPerso.Y);
+                _positionPerso = new Vector2(_tailleFenetre - _taillePerso, _positionPerso.Y);
             }
             if (_positionPerso.Y >= _tailleFenetre)
             {
@@ -88,7 +104,7 @@ namespace FindTheDoors
             }
             if (_positionPerso.Y < 0)
             {
-                _positionPerso = new Vector2(_positionPerso.X, _tailleFenetre-20);
+                _positionPerso = new Vector2(_positionPerso.X, _tailleFenetre - _taillePerso);
             }
             if (_keyboardState.IsKeyDown(Keys.D)  && !(_keyboardState.IsKeyDown(Keys.Q)))
             {
@@ -159,6 +175,11 @@ namespace FindTheDoors
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
+            for (int i = 0; i < _nbMechant; i++)
+            {
+                _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
+            }
+            
             _spriteBatch.End(); 
             base.Draw(gameTime);
 
