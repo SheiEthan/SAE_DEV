@@ -16,7 +16,6 @@ namespace FindTheDoors
         private Texture2D _texturePerso;
         private Vector2 _positionPerso;
         private int _sensPerso;
-        private int _count;
         private KeyboardState _keyboardState;
         private bool test;
         private SpriteFont _police;
@@ -25,6 +24,8 @@ namespace FindTheDoors
         private Vector2 _positioncoeur;
         private Vector2 _positionClef;
         private int _nbCoeur;
+        private int _tailleFenetre;
+        private int _taillePerso;
 
         public Game1()
         {
@@ -40,10 +41,11 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferWidth = 400;
             _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
-            _positionPerso = new Vector2(50, 50);
+            _positionPerso = new Vector2(0,0);
             _positioncoeur = new Vector2(20, 405);
             _positionClef = new Vector2(325, 400);
-            _count = 0;
+            _tailleFenetre = 400;
+            _taillePerso = 20;
             _nbCoeur = 3;
             test = true;
 
@@ -71,6 +73,22 @@ namespace FindTheDoors
             {
                 _sensPerso = 0;
                
+            }
+            if (_positionPerso.X >= _tailleFenetre)
+            {
+                _positionPerso = new Vector2(0, _positionPerso.Y);
+            }
+            if (_positionPerso.X < 0)
+            {
+                _positionPerso = new Vector2(_tailleFenetre-20, _positionPerso.Y);
+            }
+            if (_positionPerso.Y >= _tailleFenetre)
+            {
+                _positionPerso = new Vector2(_positionPerso.X, 0);
+            }
+            if (_positionPerso.Y < 0)
+            {
+                _positionPerso = new Vector2(_positionPerso.X, _tailleFenetre-20);
             }
             if (_keyboardState.IsKeyDown(Keys.D)  && !(_keyboardState.IsKeyDown(Keys.Q)))
             {
@@ -126,7 +144,8 @@ namespace FindTheDoors
                     test = false;
                 }
             }
-
+            if (_keyboardState.IsKeyDown(Keys.T))
+            { test = true; }
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
@@ -136,10 +155,10 @@ namespace FindTheDoors
             GraphicsDevice.Clear(Color.Gray);
             _tiledMapRenderer.Draw();
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
-            _spriteBatch.Draw(_textureClef, _positionClef,null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
+            _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
+            _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
             _spriteBatch.End(); 
             base.Draw(gameTime);
 
