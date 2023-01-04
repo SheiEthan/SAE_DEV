@@ -42,6 +42,7 @@ namespace FindTheDoors
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(50, 50);
             _positioncoeur = new Vector2(20, 405);
+            _positionClef = new Vector2(325, 400);
             _count = 0;
             _nbCoeur = 3;
             test = true;
@@ -55,9 +56,10 @@ namespace FindTheDoors
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             _texturePerso = Content.Load<Texture2D>("HeroFace");
             _texturecoeur = Content.Load<Texture2D>("Hearth1");
+            _textureClef = Content.Load<Texture2D>("Key2");
             _police = Content.Load<SpriteFont>("Font");
         }
-
+      
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -131,12 +133,13 @@ namespace FindTheDoors
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Gray);
             _tiledMapRenderer.Draw();
             _spriteBatch.Begin();
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
+            _spriteBatch.Draw(_textureClef, _positionClef,null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.End(); 
             base.Draw(gameTime);
 
