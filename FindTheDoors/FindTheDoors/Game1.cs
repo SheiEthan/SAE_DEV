@@ -56,7 +56,7 @@ namespace FindTheDoors
               Random rnd = new Random();
             for (int i = 0; i < _nbMechant; i++)
             {
-                _positionMechant[i] = new Vector2(rnd.Next(0,_tailleFenetre- _tailleMechant), (rnd.Next(0, _tailleFenetre - _tailleMechant)));
+                _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
             }
             _nbCoeur = 3;
             test = true;
@@ -174,14 +174,14 @@ namespace FindTheDoors
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
-            _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
+            
             for (int i = 0; i < _nbMechant; i++)
             {
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
             }
-                
-           
-            
+            _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
+
+
             _spriteBatch.End(); 
             base.Draw(gameTime);
 
