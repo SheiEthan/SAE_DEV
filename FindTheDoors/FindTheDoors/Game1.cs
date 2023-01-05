@@ -122,7 +122,7 @@ namespace FindTheDoors
                 }
             }
         }
-      
+
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -133,25 +133,62 @@ namespace FindTheDoors
             if (_keyboardState.IsKeyUp(Keys.D) || _keyboardState.IsKeyUp(Keys.Q) && (_keyboardState.IsKeyUp(Keys.Z) || _keyboardState.IsKeyUp(Keys.S)))
             {
                 _sensPerso = 0;
-               
+
             }
             if (_positionPerso.X >= _tailleFenetre)
             {
                 _positionPerso = new Vector2(0, _positionPerso.Y);
+                for (int i = 0; i < _nbMur; i++)
+                {
+                    if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                    {
+
+                        _positionPerso.X = _tailleFenetre;
+
+                    }
+                }
+
             }
             if (_positionPerso.X < 0)
             {
                 _positionPerso = new Vector2(_tailleFenetre - _taillePerso, _positionPerso.Y);
+                for (int i = 0; i < _nbMur; i++)
+                {
+                    if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                    {
+
+                        _positionPerso.X = 0;
+
+                    }
+                }
             }
             if (_positionPerso.Y >= _tailleFenetre)
             {
                 _positionPerso = new Vector2(_positionPerso.X, 0);
+                for (int i = 0; i < _nbMur; i++)
+                {
+                    if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                    {
+
+                        _positionPerso.Y = _tailleFenetre - _taillePerso;
+
+                    }
+                }
             }
             if (_positionPerso.Y < 0)
             {
                 _positionPerso = new Vector2(_positionPerso.X, _tailleFenetre - _taillePerso);
+                for (int i = 0; i < _nbMur; i++)
+                {
+                    if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                    {
+
+                        _positionPerso.Y = 0;
+
+                    }
+                }
             }
-            if (_keyboardState.IsKeyDown(Keys.D)  && !(_keyboardState.IsKeyDown(Keys.Q)))
+            if (_keyboardState.IsKeyDown(Keys.D) && !(_keyboardState.IsKeyDown(Keys.Q)))
             {
                 if (test)
                 {
@@ -160,6 +197,15 @@ namespace FindTheDoors
                         _sensPerso = 20;
                         _texturePerso = Content.Load<Texture2D>("HeroDroit");
                         _positionPerso.X += _sensPerso;
+                    }
+                    for (int i = 0; i < _nbMur; i++)
+                    {
+                        if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                        {
+
+                            _positionPerso.X -= 20;
+
+                        }
                     }
                     test = false;
                 }
@@ -175,6 +221,15 @@ namespace FindTheDoors
                         _texturePerso = Content.Load<Texture2D>("HeroGauche");
                         _positionPerso.X += _sensPerso;
                     }
+                    for (int i = 0; i < _nbMur; i++)
+                    {
+                        if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                        {
+
+                            _positionPerso.X += 20;
+
+                        }
+                    }
                     test = false;
                 }
             }
@@ -187,6 +242,15 @@ namespace FindTheDoors
                         _sensPerso = 20;
                         _texturePerso = Content.Load<Texture2D>("HeroFace");
                         _positionPerso.Y += _sensPerso;
+                    }
+                    for (int i = 0; i < _nbMur; i++)
+                    {
+                        if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                        {
+
+                            _positionPerso.Y -= 20;
+
+                        }
                     }
                     test = false;
                 }
@@ -202,6 +266,15 @@ namespace FindTheDoors
                         _texturePerso = Content.Load<Texture2D>("HeroDos");
                         _positionPerso.Y += _sensPerso;
                     }
+                    for (int i = 0; i < _nbMur; i++)
+                    {
+                        if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                        {
+
+                            _positionPerso.Y += 20;
+
+                        }
+                    }
                     test = false;
                 }
             }
@@ -214,13 +287,14 @@ namespace FindTheDoors
 
                 }
             }
-            
+
+
             if (!test)
             {
-               
-                    for (int i = 0; i < _nbMechant; i++)
-                    {
-                    if(!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
+
+                for (int i = 0; i < _nbMechant; i++)
+                {
+                    if (!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
                     {
                         _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
                         _nbMechant -= 1;
@@ -287,6 +361,7 @@ namespace FindTheDoors
 
 
             }
+
 
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
