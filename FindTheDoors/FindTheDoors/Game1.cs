@@ -59,7 +59,9 @@ namespace FindTheDoors
             _graphics.ApplyChanges();
             _nbMechant = 5;
             _nbMur = 5;
-            _positionPerso = new Vector2(0,0);
+
+            Random rnd = new Random();
+            _positionPerso = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             _positioncoeur = new Vector2(20, 405);
             _positionClef = new Vector2(325, 400);
             _positionSlimeIcone = new Vector2(90, 400);
@@ -67,7 +69,7 @@ namespace FindTheDoors
             _taillePerso = 20;
 
       
-            Random rnd = new Random();
+
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
@@ -298,6 +300,7 @@ namespace FindTheDoors
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
+            _spriteBatch.Draw(_textureTrappe, _positionTrappe, Color.White);
             _spriteBatch.Draw(_textureSlimeIcone, _positionSlimeIcone, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbMechant}", new Vector2(140, 410), Color.White);
 
@@ -317,7 +320,6 @@ namespace FindTheDoors
             {
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
             }
-            _spriteBatch.Draw(_textureTrappe, _positionTrappe, Color.White);
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
             
 
