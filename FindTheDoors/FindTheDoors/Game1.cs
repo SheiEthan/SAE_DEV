@@ -31,6 +31,9 @@ namespace FindTheDoors
         private int _tailleMechant;
         private Texture2D[] _textureMechant = new Texture2D[5];
         private Vector2[] _positionMechant = new Vector2[5];
+        private Texture2D _textureTrappe;
+        private Vector2 _positionTrappe;
+        private int _tailleTrappe;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -52,12 +55,15 @@ namespace FindTheDoors
             _tailleFenetre = 400;
             _taillePerso = 20;
             _tailleMechant = 20;
+            _tailleTrappe = 20;
+
       
-              Random rnd = new Random();
+            Random rnd = new Random();
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
             }
+            _positionTrappe = new Vector2((rnd.Next((rnd.Next(0, 20)) * 20)), (rnd.Next((rnd.Next(0, 20)) * 20)));
             _nbCoeur = 3;
             test = true;
 
@@ -76,6 +82,7 @@ namespace FindTheDoors
                 _textureMechant[i] = Content.Load<Texture2D>("Slime");
             }
             _police = Content.Load<SpriteFont>("Font");
+            _textureTrappe = Content.Load<Texture2D>("Exit");
         }
       
         protected override void Update(GameTime gameTime)
@@ -179,8 +186,9 @@ namespace FindTheDoors
             {
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
             }
+            _spriteBatch.Draw(_textureTrappe, _positionTrappe, Color.White);
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
-
+            
 
             _spriteBatch.End(); 
             base.Draw(gameTime);
