@@ -220,7 +220,7 @@ namespace FindTheDoors
                     {
                     if(!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
                     {
-                        _positionMechant[i] = new Vector2(-80000000, -80000000);
+                        _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
                         _nbMechant -= 1;
                     }
                     _choixMonstre = rnd.Next(1, 3);
