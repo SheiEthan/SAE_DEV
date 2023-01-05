@@ -34,6 +34,13 @@ namespace FindTheDoors
         private Texture2D _textureTrappe;
         private Vector2 _positionTrappe;
         private int _tailleTrappe;
+        private Texture2D[] _textureMur = new Texture2D[5];
+        private Vector2[] _positionMur = new Vector2[5];
+        private int _nbMur = 5;
+
+        private Texture2D[,] _textureCase = new Texture2D[20, 20];
+        private Vector2[,] _positionCase = new Vector2[20, 20];
+        int _nbCase = 20;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -49,6 +56,7 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
             _nbMechant = 5;
+            _nbMur = 5;
             _positionPerso = new Vector2(0,0);
             _positioncoeur = new Vector2(20, 405);
             _positionClef = new Vector2(325, 400);
@@ -63,7 +71,20 @@ namespace FindTheDoors
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
             }
-            _positionTrappe = new Vector2((rnd.Next((rnd.Next(0, 20)) * 20)), (rnd.Next((rnd.Next(0, 20)) * 20)));
+            for (int i = 0; i < _nbMur; i++)
+            {
+                _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
+            }
+            _positionTrappe = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
+
+            for (int i = 0; i < _nbCase; i++)
+            {
+                for (int j = 0; j < _nbCase; j++)
+                {
+                    _positionCase[i, j] = new Vector2(i * 20, j * 20);
+                }
+            }
+
             _nbCoeur = 3;
             test = true;
 
@@ -81,8 +102,21 @@ namespace FindTheDoors
             {
                 _textureMechant[i] = Content.Load<Texture2D>("Slime");
             }
+            for (int i = 0; i < _nbMur; i++)
+            {
+                _textureMur[i] = Content.Load<Texture2D>("bush");
+            }
             _police = Content.Load<SpriteFont>("Font");
             _textureTrappe = Content.Load<Texture2D>("Exit");
+
+
+            for (int i = 0; i < _nbCase; i++)
+            {
+                for (int j = 0; j < _nbCase; j++)
+                {
+                    _textureCase[i, j] = Content.Load<Texture2D>("case");
+                }
+            }
         }
       
         protected override void Update(GameTime gameTime)
@@ -181,7 +215,20 @@ namespace FindTheDoors
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
-            
+
+
+            for (int i = 0; i < _nbCase; i++)
+            {
+                for (int j = 0; j < _nbCase; j++)
+                {
+                    _spriteBatch.Draw(_textureCase[i,j], _positionCase[i,j], Color.White);
+                }
+            }
+
+            for (int i = 0; i < _nbMur; i++)
+            {
+                _spriteBatch.Draw(_textureMur[i], _positionMur[i], Color.White);
+            }
             for (int i = 0; i < _nbMechant; i++)
             {
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
