@@ -29,12 +29,12 @@ namespace FindTheDoors
         private int _tailleFenetre;
         private int _taillePerso;
         private int _nbMechant = 5;
-        private int _tailleMechant;
         private Texture2D[] _textureMechant = new Texture2D[5];
+        private Texture2D _textureSlimeIcone;
+        private Vector2 _positionSlimeIcone; 
         private Vector2[] _positionMechant = new Vector2[5];
         private Texture2D _textureTrappe;
         private Vector2 _positionTrappe;
-        private int _tailleTrappe;
         private Texture2D[] _textureMur = new Texture2D[5];
         private Vector2[] _positionMur = new Vector2[5];
         private int _nbMur = 5;
@@ -62,10 +62,9 @@ namespace FindTheDoors
             _positionPerso = new Vector2(0,0);
             _positioncoeur = new Vector2(20, 405);
             _positionClef = new Vector2(325, 400);
+            _positionSlimeIcone = new Vector2(90, 400);
             _tailleFenetre = 400;
             _taillePerso = 20;
-            _tailleMechant = 20;
-            _tailleTrappe = 20;
 
       
             Random rnd = new Random();
@@ -100,6 +99,7 @@ namespace FindTheDoors
             _texturePerso = Content.Load<Texture2D>("HeroFace");
             _texturecoeur = Content.Load<Texture2D>("Hearth1");
             _textureClef = Content.Load<Texture2D>("Key2");
+            _textureSlimeIcone = Content.Load<Texture2D>("Slime");
             for (int i = 0; i < _nbMechant; i++)
             {
                 _textureMechant[i] = Content.Load<Texture2D>("Slime");
@@ -221,9 +221,48 @@ namespace FindTheDoors
                     if(!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
                     {
                         _positionMechant[i] = new Vector2(-80000000, -80000000);
+                        _nbMechant -= 1;
                     }
                     _choixMonstre = rnd.Next(1, 3);
-                    if (_choixMonstre == 1)
+                    if (!test && _positionMechant[i].X == _positionPerso.X)
+                    {
+                        if (_positionMechant[i].Y > _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y -= 20;
+
+                        }
+                        if (_positionMechant[i].Y < _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y += 20;
+
+                        }
+                    }
+                    else if (_choixMonstre == 2)
+                    {
+                        if (_positionMechant[i].Y > _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y -= 20;
+
+                        }
+                        if (_positionMechant[i].Y < _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y += 20;
+
+                        }
+                    }
+                    if (!test && _positionMechant[i].Y == _positionPerso.Y)
+                    {
+                        if (_positionMechant[i].X > _positionPerso.X)
+                        {
+                            _positionMechant[i].X -= 20;
+
+                        }
+                        if (_positionMechant[i].X < _positionPerso.X)
+                        {
+                            _positionMechant[i].X += 20;
+                        }
+                    }
+                    else if (_choixMonstre == 1)
                     {
                         if (_positionMechant[i].X > _positionPerso.X)
                         {
@@ -236,19 +275,6 @@ namespace FindTheDoors
 
                         }
                     }
-                    if (_choixMonstre== 2)
-                    {
-                        if (_positionMechant[i].Y > _positionPerso.Y)
-                        {
-                            _positionMechant[i].Y -= 20;
-
-                        }
-                        if (_positionMechant[i].Y < _positionPerso.Y)
-                        {
-                            _positionMechant[i].Y += 20;
-
-                        }
-                    }                  
                 }
                 Thread.Sleep(250);
                 test = true;
@@ -268,7 +294,8 @@ namespace FindTheDoors
             _spriteBatch.Draw(_texturecoeur, _positioncoeur, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbCoeur}", new Vector2(60, 407), Color.White);
             _spriteBatch.Draw(_textureClef, _positionClef, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
-
+            _spriteBatch.Draw(_textureSlimeIcone, _positionSlimeIcone, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
+            _spriteBatch.DrawString(_police, $"{_nbMechant}", new Vector2(140, 410), Color.White);
 
             for (int i = 0; i < _nbCase; i++)
             {
