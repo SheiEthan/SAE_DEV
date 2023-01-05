@@ -29,8 +29,8 @@ namespace FindTheDoors
         private int _taillePerso;
         private int _nbMechant;
         private int _tailleMechant;
-        private Texture2D[] _textureMechant;
-        private Vector2[] _positionMechant;
+        private Texture2D[] _textureMechant = new Texture2D[5];
+        private Vector2[] _positionMechant = new Vector2[5];
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
