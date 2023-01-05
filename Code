@@ -1,0 +1,51 @@
+if (!test && _positionMechant[i].X == _positionPerso.X)
+                    {
+                        if (_positionMechant[i].Y > _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y -= 20;
+
+                        }
+                        if (_positionMechant[i].Y < _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y += 20;
+
+                        }
+                    }
+                    else if (_choixMonstre == 2)
+                    {
+                        if (_positionMechant[i].Y > _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y -= 20;
+
+                        }
+                        if (_positionMechant[i].Y < _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y += 20;
+
+                        }
+                    }
+                    if (!test && _positionMechant[i].Y == _positionPerso.Y)
+                    {
+                        if (_positionMechant[i].X > _positionPerso.X)
+                        {
+                            _positionMechant[i].X -= 20;
+
+                        }
+                        if (_positionMechant[i].X < _positionPerso.X)
+                        {
+                            _positionMechant[i].X += 20;
+                        }
+                    }
+                    else if (_choixMonstre == 1)
+                    {
+                        if (_positionMechant[i].X > _positionPerso.X)
+                        {
+                            _positionMechant[i].X -= 20;
+
+                        }
+                        if (_positionMechant[i].X < _positionPerso.X)
+                        {
+                            _positionMechant[i].X += 20;
+
+                        }
+                    }
