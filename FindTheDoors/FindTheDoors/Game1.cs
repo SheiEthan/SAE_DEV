@@ -73,10 +73,16 @@ namespace FindTheDoors
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
+                if (_positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
+                    _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             }
             for (int i = 0; i < _nbMur; i++)
             {
                 _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
+                if (_positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
+                    _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
+                if (_positionMur[i].X == _positionTrappe.X && _positionMur[i].Y == _positionTrappe.Y)
+                    _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             }
             _positionTrappe = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
 
