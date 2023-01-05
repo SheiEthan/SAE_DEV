@@ -27,7 +27,7 @@ namespace FindTheDoors
         private int _nbCoeur;
         private int _tailleFenetre;
         private int _taillePerso;
-        private int _nbMechant;
+        private int _nbMechant = 5;
         private int _tailleMechant;
         private Texture2D[] _textureMechant = new Texture2D[5];
         private Vector2[] _positionMechant = new Vector2[5];
@@ -179,6 +179,8 @@ namespace FindTheDoors
             {
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
             }
+                
+           
             
             _spriteBatch.End(); 
             base.Draw(gameTime);
