@@ -5,6 +5,7 @@ using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Graphics;
 using System;
+using System.Threading;
 
 namespace FindTheDoors
 {
@@ -201,8 +202,38 @@ namespace FindTheDoors
                     test = false;
                 }
             }
-            if (_keyboardState.IsKeyDown(Keys.T))
-            { test = true; }
+            if (!test)
+            {
+                for (int i = 0; i < _nbMechant; i++)
+                {
+                    if (_positionMechant[i].X > _positionPerso.X)
+                    {
+                        _positionMechant[i].X -= 20;
+                     
+                    }
+                    else if (_positionMechant[i].X < _positionPerso.X)
+                    {
+                        _positionMechant[i].X += 20;
+
+                    }
+                    else if (_positionMechant[i].Y > _positionPerso.Y)
+                    {
+                        _positionMechant[i].Y -= 20;
+
+                    }
+                    else if (_positionMechant[i].Y < _positionPerso.Y)
+                    {
+                        _positionMechant[i].Y += 20;
+
+                    }
+
+                }
+                Thread.Sleep(150);
+                test = true;
+
+
+            }
+
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
