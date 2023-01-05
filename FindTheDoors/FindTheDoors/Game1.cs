@@ -38,10 +38,11 @@ namespace FindTheDoors
         private Texture2D[] _textureMur = new Texture2D[5];
         private Vector2[] _positionMur = new Vector2[5];
         private int _nbMur = 5;
-
+        private Random rnd = new Random();
         private Texture2D[,] _textureCase = new Texture2D[20, 20];
         private Vector2[,] _positionCase = new Vector2[20, 20];
-        int _nbCase = 20;
+        private int _nbCase = 20;
+        private int _choixMonstre;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -202,33 +203,54 @@ namespace FindTheDoors
                     test = false;
                 }
             }
-            if (!test)
+            for (int i = 0; i < _nbMechant; i++)
             {
-                for (int i = 0; i < _nbMechant; i++)
+                if (test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
                 {
-                    if (_positionMechant[i].X > _positionPerso.X)
-                    {
-                        _positionMechant[i].X -= 20;
-                     
-                    }
-                    else if (_positionMechant[i].X < _positionPerso.X)
-                    {
-                        _positionMechant[i].X += 20;
-
-                    }
-                    else if (_positionMechant[i].Y > _positionPerso.Y)
-                    {
-                        _positionMechant[i].Y -= 20;
-
-                    }
-                    else if (_positionMechant[i].Y < _positionPerso.Y)
-                    {
-                        _positionMechant[i].Y += 20;
-
-                    }
+                    _nbCoeur--;
+                    _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
 
                 }
-                Thread.Sleep(150);
+            }
+            
+            if (!test)
+            {
+               
+                    for (int i = 0; i < _nbMechant; i++)
+                    {
+                    if(!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
+                    {
+                        _positionMechant[i] = new Vector2(-80000000, -80000000);
+                    }
+                    _choixMonstre = rnd.Next(1, 3);
+                    if (_choixMonstre == 1)
+                    {
+                        if (_positionMechant[i].X > _positionPerso.X)
+                        {
+                            _positionMechant[i].X -= 20;
+
+                        }
+                        if (_positionMechant[i].X < _positionPerso.X)
+                        {
+                            _positionMechant[i].X += 20;
+
+                        }
+                    }
+                    if (_choixMonstre== 2)
+                    {
+                        if (_positionMechant[i].Y > _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y -= 20;
+
+                        }
+                        if (_positionMechant[i].Y < _positionPerso.Y)
+                        {
+                            _positionMechant[i].Y += 20;
+
+                        }
+                    }                  
+                }
+                Thread.Sleep(250);
                 test = true;
 
 
