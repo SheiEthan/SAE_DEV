@@ -222,6 +222,10 @@ namespace FindTheDoors
                     {
                         _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
                         _nbMechant -= 1;
+                        if (_nbMechant == 0)
+                        {
+                            _textureClef = Content.Load<Texture2D>("Key1");
+                        }
                     }
                     _choixMonstre = rnd.Next(1, 3);
                     if (!test && _positionMechant[i].X == _positionPerso.X)
