@@ -14,11 +14,39 @@ namespace FindTheDoors
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        public SpriteBatch SpriteBatch { get; set; }
         private readonly ScreenManager _screenManager;
+        private SpriteBatch _spriteBatch;
         private MyScreen1 _myScreen1;
         private MyScreen2 _myScreen2;
+        private ScreenMenu _screenMenu;
+        public enum Etats { Menu, Controls, Play, Quit };
+        private Etats etat;
 
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
+
+        public Etats Etat
+        {
+            get
+            {
+                return this.etat;
+            }
+
+            set
+            {
+                this.etat = value;
+            }
+        }
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -26,6 +54,15 @@ namespace FindTheDoors
             IsMouseVisible = true;
             _screenManager = new ScreenManager();
             Components.Add(_screenManager);
+
+            // Par défaut, le 1er état flèche l'écran de menu
+            Etat = Etats.Menu;
+
+            // on charge les 2 écrans 
+            _screenMenu = new ScreenMenu(this);
+            _myScreen1 = new MyScreen1(this);
+            _myScreen2 = new MyScreen2(this);
+
         }
 
         protected override void Initialize()
@@ -39,10 +76,8 @@ namespace FindTheDoors
 
         protected override void LoadContent()
         {
+            _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            _myScreen1 = new MyScreen1(this); // en leur donnant une référence au Game
-            _myScreen2 = new MyScreen2(this);
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,15 +85,22 @@ namespace FindTheDoors
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Left))
+            MouseState _mouseState = Mouse.GetState();
+            if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-                _screenManager.LoadScreen(_myScreen1, new FadeTransition(GraphicsDevice,
-                Color.Black));
+                // Attention, l'état a été mis à jour directement par l'écran en question
+                if (this.Etat == Etats.Quit)
+                    Exit();
+
+                else if (this.Etat == Etats.Play)
+                    _screenManager.LoadScreen(_myScreen1, new FadeTransition(GraphicsDevice, Color.Black));
+
             }
-            else if (keyboardState.IsKeyDown(Keys.Right))
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
             {
-                _screenManager.LoadScreen(_myScreen2, new FadeTransition(GraphicsDevice,
-                Color.Black));
+                if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             }
             // TODO: Add your update logic here
 

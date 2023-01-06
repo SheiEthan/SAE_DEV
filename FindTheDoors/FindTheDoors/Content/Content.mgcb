@@ -97,18 +97,6 @@
 /processorParam:TextureFormat=Color
 /build:herbe.jpg
 
-#begin herbe.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:herbe.jpg
-
 #begin herbe.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -167,6 +155,18 @@
 /processorParam:TextureFormat=Color
 /build:HeroGauche.png
 
+#begin jouer_scaled_2x_pngcrushed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:jouer_scaled_2x_pngcrushed.png
+
 #begin Key1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -190,6 +190,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Key2.png
+
+#begin option_scaled_2x_pngcrushed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:option_scaled_2x_pngcrushed.png
+
+#begin page_scaled_2x_pngcrushed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:page_scaled_2x_pngcrushed.png
+
+#begin quitter_scaled_2x_pngcrushed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:quitter_scaled_2x_pngcrushed.png
 
 #begin sable.jpg
 /importer:TextureImporter
