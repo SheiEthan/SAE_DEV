@@ -21,7 +21,7 @@ namespace FindTheDoors
         private TiledMap _tiledMap;
         private TiledMapRenderer _tiledMapRenderer;
         private Texture2D _texturePerso;
-        private Vector2 _positionPerso;
+        public Vector2 _positionPerso;
         private int _sensPerso;
         private KeyboardState _keyboardState;
         private bool test;
@@ -33,13 +33,13 @@ namespace FindTheDoors
         public int _nbCoeur = 3;
         private int _tailleFenetre;
         private int _taillePerso;
-        private int _nbMechant = 5;
+        public int _nbMechant = 5;
         private Texture2D[] _textureMechant = new Texture2D[5];
         private Texture2D _textureSlimeIcone;
         private Vector2 _positionSlimeIcone;
         private Vector2[] _positionMechant = new Vector2[5];
         private Texture2D _textureTrappe;
-        private Vector2 _positionTrappe;
+        public Vector2 _positionTrappe;
         private Texture2D[] _textureMur = new Texture2D[5];
         private Vector2[] _positionMur = new Vector2[5];
         private int[] _etatMur = new int[5];
@@ -67,6 +67,7 @@ namespace FindTheDoors
             _positionSlimeIcone = new Vector2(90, 400);
             _tailleFenetre = 400;
             _taillePerso = 20;
+            _nbMechant = 5;
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
@@ -130,6 +131,8 @@ namespace FindTheDoors
                 _sensPerso = 0;
 
             }
+
+
             if (_positionPerso.X >= _tailleFenetre)
             {
                 _positionPerso = new Vector2(0, _positionPerso.Y);

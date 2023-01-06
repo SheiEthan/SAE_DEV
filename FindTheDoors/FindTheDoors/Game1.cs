@@ -110,7 +110,10 @@ namespace FindTheDoors
 
 
             }
-
+            if (_myScreen1._nbMechant == 0 && _myScreen1._positionPerso.X == _myScreen1._positionTrappe.X && _myScreen1._positionPerso.Y == _myScreen1._positionTrappe.Y)
+            {
+                _screenManager.LoadScreen(_myScreen1, new FadeTransition(GraphicsDevice, Color.Black));
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Back) && _myScreen1.MenuReouvert == false)
             {
                 if (this.Etat == Etats.Play)
