@@ -60,10 +60,6 @@ namespace FindTheDoors
         {
             base.Initialize();
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
-
-            _nbMechant = 5;
-            _nbMur = 5;
-
             Random rnd = new Random();
             _positionPerso = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             _positioncoeur = new Vector2(20, 405);
@@ -71,9 +67,6 @@ namespace FindTheDoors
             _positionSlimeIcone = new Vector2(90, 400);
             _tailleFenetre = 400;
             _taillePerso = 20;
-
-
-
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
@@ -87,7 +80,6 @@ namespace FindTheDoors
                     _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             }
             _positionTrappe = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
-
             for (int i = 0; i < _nbCase; i++)
             {
                 for (int j = 0; j < _nbCase; j++)
@@ -95,10 +87,8 @@ namespace FindTheDoors
                     _positionCase[i, j] = new Vector2(i * 20, j * 20);
                 }
             }
-
             _nbCoeur = 3;
             test = true;
-
         }
         public override void LoadContent()
         {
