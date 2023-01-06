@@ -322,6 +322,13 @@ namespace FindTheDoors
                                     _positionMechant[i].Y += 20;
                                 }
                             }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
+                                {
+                                    _positionMechant[i].Y += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
@@ -330,6 +337,13 @@ namespace FindTheDoors
                             for (int j = 0; j < _nbMur; j++)
                             {
                                 if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y -= 20;
+                                }
+                            }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
                                 {
                                     _positionMechant[i].Y -= 20;
                                 }
@@ -348,6 +362,14 @@ namespace FindTheDoors
                                     _positionMechant[i].Y += 20;
                                 }
                             }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
+                                {
+                                    _positionMechant[i].Y += 20;
+                                }
+                            }
+
 
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
@@ -356,6 +378,13 @@ namespace FindTheDoors
                             for (int j = 0; j < _nbMur; j++)
                             {
                                 if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y -= 20;
+                                }
+                            }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
                                 {
                                     _positionMechant[i].Y -= 20;
                                 }
@@ -375,6 +404,13 @@ namespace FindTheDoors
                                     _positionMechant[i].X += 20;
                                 }
                             }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
+                                {
+                                    _positionMechant[i].X += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].X < _positionPerso.X)
@@ -383,6 +419,13 @@ namespace FindTheDoors
                             for (int j = 0; j < _nbMur; j++)
                             {
                                 if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X -= 20;
+                                }
+                            }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
                                 {
                                     _positionMechant[i].X -= 20;
                                 }
@@ -401,6 +444,13 @@ namespace FindTheDoors
                                     _positionMechant[i].X += 20;
                                 }
                             }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i != j)
+                                {
+                                    _positionMechant[i].X += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].X < _positionPerso.X)
@@ -409,6 +459,13 @@ namespace FindTheDoors
                             for (int j = 0; j < _nbMur; j++)
                             {
                                 if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X -= 20;
+                                }
+                            }
+                            for (int j = 0; j < _nbMechant; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMechant[j].X && _positionMechant[j].Y == _positionMechant[i].Y && i!=j)
                                 {
                                     _positionMechant[i].X -= 20;
                                 }
