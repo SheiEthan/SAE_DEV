@@ -93,15 +93,25 @@ namespace FindTheDoors
                 if (this.Etat == Etats.Quit)
                     Exit();
 
-                else if (this.Etat == Etats.Play)
+                else if (this.Etat == Etats.Play && _screenMenu.DejaJouer == false)
+                {
                     _screenManager.LoadScreen(_myScreen1, new FadeTransition(GraphicsDevice, Color.Black));
+                    _screenMenu.DejaJouer = true;
+                    _myScreen1.MenuReouvert = false;
+                }
+
 
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            if (Keyboard.GetState().IsKeyDown(Keys.Back) && _myScreen1.MenuReouvert == false)
             {
-                if (this.Etat == Etats.Menu)
+                if (this.Etat == Etats.Play)
+                {
                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+                    _myScreen1.MenuReouvert = true;
+                    _screenMenu.DejaJouer = false;
+                }
+                    
             }
             // TODO: Add your update logic here
 
@@ -110,7 +120,7 @@ namespace FindTheDoors
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 

@@ -48,6 +48,7 @@ namespace FindTheDoors
         private Vector2[,] _positionCase = new Vector2[20, 20];
         private int _nbCase = 20;
         private int _choixMonstre;
+        public bool MenuReouvert = false;
         // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
         // défini dans Game1
         public MyScreen1(Game1 game) : base(game)

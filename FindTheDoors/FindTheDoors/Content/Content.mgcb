@@ -215,7 +215,7 @@
 /processorParam:TextureFormat=Color
 /build:page_scaled_2x_pngcrushed.png
 
-#begin quitter_scaled_2x_pngcrushed.png
+#begin quitter(1)_scaled_2x_pngcrushed.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -225,7 +225,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:quitter_scaled_2x_pngcrushed.png
+/build:quitter(1)_scaled_2x_pngcrushed.png
 
 #begin sable.jpg
 /importer:TextureImporter

@@ -23,6 +23,7 @@ namespace FindTheDoors
 
         // contient les rectangles : position et taille des 3 boutons présents dans la texture 
         private Rectangle[] lesBoutons;
+        public bool DejaJouer = false;
 
         public ScreenMenu(Game1 game) : base(game)
         {
@@ -62,7 +63,7 @@ namespace FindTheDoors
                     }
                     if (i == 2)
                     {
-                        _textBoutons = Content.Load<Texture2D>("quitter_scaled_2x_pngcrushed");
+                        _textBoutons = Content.Load<Texture2D>("quitter(1)_scaled_2x_pngcrushed");
                         if (i == 2 && _mouseState.LeftButton == ButtonState.Pressed)
                             _myGame.Etat = Game1.Etats.Quit;
                     }
