@@ -49,7 +49,6 @@ namespace FindTheDoors
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
         protected override void Initialize()
         {
             base.Initialize();
@@ -57,9 +56,6 @@ namespace FindTheDoors
             _graphics.PreferredBackBufferWidth = 400;
             _graphics.PreferredBackBufferHeight = 450;
             _graphics.ApplyChanges();
-            _nbMechant = 5;
-            _nbMur = 5;
-
             Random rnd = new Random();
             _positionPerso = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             _positioncoeur = new Vector2(20, 405);
@@ -67,9 +63,6 @@ namespace FindTheDoors
             _positionSlimeIcone = new Vector2(90, 400);
             _tailleFenetre = 400;
             _taillePerso = 20;
-
-      
-
             for (int i = 0; i < _nbMechant; i++)
             {
                 _positionMechant[i] = new Vector2((rnd.Next(0,20))*20, (rnd.Next(0,20))*20);
@@ -85,7 +78,6 @@ namespace FindTheDoors
                     _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             }
             _positionTrappe = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
-
             for (int i = 0; i < _nbCase; i++)
             {
                 for (int j = 0; j < _nbCase; j++)
@@ -93,12 +85,9 @@ namespace FindTheDoors
                     _positionCase[i, j] = new Vector2(i * 20, j * 20);
                 }
             }
-
             _nbCoeur = 3;
             test = true;
-
         }
-
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -118,8 +107,6 @@ namespace FindTheDoors
             }
             _police = Content.Load<SpriteFont>("Font");
             _textureTrappe = Content.Load<Texture2D>("Exit");
-
-
             for (int i = 0; i < _nbCase; i++)
             {
                 for (int j = 0; j < _nbCase; j++)
@@ -128,7 +115,6 @@ namespace FindTheDoors
                 }
             }
         }
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -139,7 +125,6 @@ namespace FindTheDoors
             if (_keyboardState.IsKeyUp(Keys.D) || _keyboardState.IsKeyUp(Keys.Q) && (_keyboardState.IsKeyUp(Keys.Z) || _keyboardState.IsKeyUp(Keys.S)))
             {
                 _sensPerso = 0;
-
             }
             if (_positionPerso.X >= _tailleFenetre)
             {
@@ -148,12 +133,9 @@ namespace FindTheDoors
                 {
                     if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                     {
-
                         _positionPerso.X = _tailleFenetre;
-
                     }
                 }
-
             }
             if (_positionPerso.X < 0)
             {
@@ -162,9 +144,7 @@ namespace FindTheDoors
                 {
                     if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                     {
-
                         _positionPerso.X = 0;
-
                     }
                 }
             }
@@ -175,9 +155,7 @@ namespace FindTheDoors
                 {
                     if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                     {
-
                         _positionPerso.Y = _tailleFenetre - _taillePerso;
-
                     }
                 }
             }
@@ -188,9 +166,7 @@ namespace FindTheDoors
                 {
                     if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                     {
-
                         _positionPerso.Y = 0;
-
                     }
                 }
             }
@@ -208,14 +184,11 @@ namespace FindTheDoors
                     {
                         if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                         {
-
                             _positionPerso.X -= 20;
-
                         }
                     }
                     test = false;
                 }
-
             }
             if (_keyboardState.IsKeyDown(Keys.Q) && !(_keyboardState.IsKeyDown(Keys.D)))
             {
@@ -231,9 +204,7 @@ namespace FindTheDoors
                     {
                         if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                         {
-
                             _positionPerso.X += 20;
-
                         }
                     }
                     test = false;
@@ -253,14 +224,11 @@ namespace FindTheDoors
                     {
                         if (test && _positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                         {
-
                             _positionPerso.Y -= 20;
-
                         }
                     }
                     test = false;
                 }
-
             }
             if (_keyboardState.IsKeyDown(Keys.Z) && !(_keyboardState.IsKeyDown(Keys.S)))
             {
@@ -290,14 +258,10 @@ namespace FindTheDoors
                 {
                     _nbCoeur--;
                     _positionMechant[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
-
                 }
             }
-
-
             if (!test)
             {
-
                 for (int i = 0; i < _nbMechant; i++)
                 {
                     if (!test && _positionMechant[i].X == _positionPerso.X && _positionMechant[i].Y == _positionPerso.Y)
@@ -315,12 +279,10 @@ namespace FindTheDoors
                         if (_positionMechant[i].Y > _positionPerso.Y)
                         {
                             _positionMechant[i].Y -= 20;
-
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
                         {
                             _positionMechant[i].Y += 20;
-
                         }
                     }
                     else if (_choixMonstre == 2)
@@ -328,12 +290,10 @@ namespace FindTheDoors
                         if (_positionMechant[i].Y > _positionPerso.Y)
                         {
                             _positionMechant[i].Y -= 20;
-
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
                         {
                             _positionMechant[i].Y += 20;
-
                         }
                     }
                     if (!test && _positionMechant[i].Y == _positionPerso.Y)
@@ -353,26 +313,19 @@ namespace FindTheDoors
                         if (_positionMechant[i].X > _positionPerso.X)
                         {
                             _positionMechant[i].X -= 20;
-
                         }
                         if (_positionMechant[i].X < _positionPerso.X)
                         {
                             _positionMechant[i].X += 20;
-
                         }
                     }
                 }
                 Thread.Sleep(250);
                 test = true;
-
-
             }
-
-
             base.Update(gameTime);
             _tiledMapRenderer.Update(gameTime);
         }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
@@ -384,7 +337,6 @@ namespace FindTheDoors
             _spriteBatch.Draw(_textureTrappe, _positionTrappe, Color.White);
             _spriteBatch.Draw(_textureSlimeIcone, _positionSlimeIcone, null, Color.White, 0, new Vector2(0, 0), 3.0f, SpriteEffects.None, 0);
             _spriteBatch.DrawString(_police, $"{_nbMechant}", new Vector2(140, 410), Color.White);
-
             for (int i = 0; i < _nbCase; i++)
             {
                 for (int j = 0; j < _nbCase; j++)
@@ -392,7 +344,6 @@ namespace FindTheDoors
                     _spriteBatch.Draw(_textureCase[i,j], _positionCase[i,j], Color.White);
                 }
             }
-
             for (int i = 0; i < _nbMur; i++)
             {
                 _spriteBatch.Draw(_textureMur[i], _positionMur[i], Color.White);
@@ -402,12 +353,8 @@ namespace FindTheDoors
                 _spriteBatch.Draw(_textureMechant[i], _positionMechant[i], Color.White);
             }
             _spriteBatch.Draw(_texturePerso, _positionPerso, Color.White);
-            
-
             _spriteBatch.End(); 
             base.Draw(gameTime);
-
-            
         }
     }
 }
