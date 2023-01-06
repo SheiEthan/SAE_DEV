@@ -70,6 +70,7 @@ namespace FindTheDoors
             // TODO: Add your initialization logic here
             _graphics.PreferredBackBufferWidth = 400;
             _graphics.PreferredBackBufferHeight = 450;
+            _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
             base.Initialize();
         }
