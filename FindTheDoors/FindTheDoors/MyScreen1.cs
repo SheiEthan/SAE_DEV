@@ -42,6 +42,7 @@ namespace FindTheDoors
         private Vector2 _positionTrappe;
         private Texture2D[] _textureMur = new Texture2D[5];
         private Vector2[] _positionMur = new Vector2[5];
+        private int[] _etatMur = new int[5];
         private int _nbMur = 5;
         private Random rnd = new Random();
         private Texture2D[,] _textureCase = new Texture2D[20, 20];
@@ -210,7 +211,11 @@ namespace FindTheDoors
                         {
 
                             _positionPerso.X -= 20;
-
+                            _etatMur[i]++;
+                            if(_etatMur[i]>= 3)
+                            {
+                                _positionMur[i] = new Vector2(-800000000, -8000000);
+                            }
                         }
                     }
                     test = false;
@@ -233,6 +238,11 @@ namespace FindTheDoors
                         {
 
                             _positionPerso.X += 20;
+                            _etatMur[i]++;
+                            if (_etatMur[i] >= 3)
+                            {
+                                _positionMur[i] = new Vector2(-800000000, -8000000);
+                            }
 
                         }
                     }
@@ -255,6 +265,11 @@ namespace FindTheDoors
                         {
 
                             _positionPerso.Y -= 20;
+                            _etatMur[i]++;
+                            if (_etatMur[i] >= 3)
+                            {
+                                _positionMur[i] = new Vector2(-800000000, -8000000);
+                            }
 
                         }
                     }
@@ -278,6 +293,11 @@ namespace FindTheDoors
                         {
 
                             _positionPerso.Y += 20;
+                            _etatMur[i]++;
+                            if (_etatMur[i] >= 3)
+                            {
+                                _positionMur[i] = new Vector2(-800000000, -8000000);
+                            }
 
                         }
                     }
