@@ -78,7 +78,7 @@ namespace FindTheDoors
         }
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.FromNonPremultiplied(35, 35, 35, 255));
             _myGame.SpriteBatch.Begin();
             _myGame.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
             _myGame.SpriteBatch.End();
