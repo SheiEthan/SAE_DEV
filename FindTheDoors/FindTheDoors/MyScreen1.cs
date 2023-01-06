@@ -85,8 +85,6 @@ namespace FindTheDoors
                 _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
                 if (_positionMur[i].X == _positionPerso.X && _positionMur[i].Y == _positionPerso.Y)
                     _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
-                if (_positionMur[i].X == _positionTrappe.X && _positionMur[i].Y == _positionTrappe.Y)
-                    _positionMur[i] = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
             }
             _positionTrappe = new Vector2((rnd.Next(0, 20)) * 20, (rnd.Next(0, 20)) * 20);
 
