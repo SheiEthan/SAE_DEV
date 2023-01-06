@@ -308,18 +308,32 @@ namespace FindTheDoors
                             _textureClef = Content.Load<Texture2D>("Key1");
                         }
                     }
+                   
                     _choixMonstre = rnd.Next(1, 3);
                     if (!test && _positionMechant[i].X == _positionPerso.X)
                     {
                         if (_positionMechant[i].Y > _positionPerso.Y)
                         {
                             _positionMechant[i].Y -= 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
                         {
                             _positionMechant[i].Y += 20;
-
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y -= 20;
+                                }
+                            }
                         }
                     }
                     else if (_choixMonstre == 2)
@@ -327,11 +341,25 @@ namespace FindTheDoors
                         if (_positionMechant[i].Y > _positionPerso.Y)
                         {
                             _positionMechant[i].Y -= 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].Y < _positionPerso.Y)
                         {
                             _positionMechant[i].Y += 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].Y -= 20;
+                                }
+                            }
 
                         }
                     }
@@ -340,11 +368,25 @@ namespace FindTheDoors
                         if (_positionMechant[i].X > _positionPerso.X)
                         {
                             _positionMechant[i].X -= 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].X < _positionPerso.X)
                         {
                             _positionMechant[i].X += 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X -= 20;
+                                }
+                            }
                         }
                     }
                     else if (_choixMonstre == 1)
@@ -352,15 +394,31 @@ namespace FindTheDoors
                         if (_positionMechant[i].X > _positionPerso.X)
                         {
                             _positionMechant[i].X -= 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X += 20;
+                                }
+                            }
 
                         }
                         if (_positionMechant[i].X < _positionPerso.X)
                         {
                             _positionMechant[i].X += 20;
+                            for (int j = 0; j < _nbMur; j++)
+                            {
+                                if (_positionMechant[i].X == _positionMur[j].X && _positionMur[j].Y == _positionMechant[i].Y)
+                                {
+                                    _positionMechant[i].X -= 20;
+                                }
+                            }
 
                         }
                     }
+                    
                 }
+                
                 Thread.Sleep(250);
                 test = true;
 
