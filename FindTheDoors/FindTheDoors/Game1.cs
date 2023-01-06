@@ -87,8 +87,16 @@ namespace FindTheDoors
                 Exit();
             KeyboardState keyboardState = Keyboard.GetState();
             MouseState _mouseState = Mouse.GetState();
+            if (_myScreen1._nbCoeur <= 0)
+            {
+                _myScreen1._nbCoeur = 3;
+                _screenManager.LoadScreen(_myScreen2, new FadeTransition(GraphicsDevice, Color.Black));
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+                _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
+                
                 // Attention, l'état a été mis à jour directement par l'écran en question
                 if (this.Etat == Etats.Quit)
                     Exit();

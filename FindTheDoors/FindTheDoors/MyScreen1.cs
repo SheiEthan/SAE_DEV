@@ -30,7 +30,7 @@ namespace FindTheDoors
         private Texture2D _textureClef;
         private Vector2 _positioncoeur;
         private Vector2 _positionClef;
-        private int _nbCoeur;
+        public int _nbCoeur = 3;
         private int _tailleFenetre;
         private int _taillePerso;
         private int _nbMechant = 5;
